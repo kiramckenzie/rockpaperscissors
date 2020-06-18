@@ -1,0 +1,92 @@
+
+<script>
+
+// game function //
+function game() {
+
+    // set/re-set options and starting scores // 
+    let playArray = ["rock", "paper", "scissors"];
+    let computerScore = 0;
+    let playerScore = 0;
+
+        // play each round //
+        function playRound() {
+
+
+            // randomly select computer's play //
+            function computerPlay() {
+            let randomSelect = playArray[Math.floor(Math.random()*playArray.length)];
+            return randomSelect;
+            }
+            
+            // let player input choice and normalize case //
+            function playerPlay() {
+            let playerInput = prompt("Please enter rock, paper, or scissors");
+            return playerInput.toLowerCase();
+            }
+
+            //  set selection variables - can't get these to work while setting functions ??? //
+            let computerSelection = computerPlay();
+            let playerSelection = playerPlay();
+
+            // display selections //
+            console.log("Computer Plays: " + computerSelection);
+            console.log("You Play: " + playerSelection);
+            
+            // results of round //
+            if (computerSelection == playerSelection) {
+                console.log("This round is a tie!");
+            
+            } else {
+                
+                switch (true) {
+                case (playerSelection == "rock" && computerSelection == "paper"):
+                case (playerSelection == "paper" && computerSelection == "scissors"):
+                case (playerSelection == "scissors" && computerSelection == "rock"):
+                console.log("The computer wins this round!");
+                computerScore += 1;
+                break;
+
+                case (computerSelection == "rock" && playerSelection == "paper"):
+                case (computerSelection == "paper" && playerSelection == "scissors"):
+                case (computerSelection == "scissors" && playerSelection == "rock"):
+                console.log("You win this round!");
+                playerScore += 1;
+                break;
+
+                default:
+                console.log("anything else");
+                }
+            }
+            
+            // print score after round //            
+            console.log("Computer's Score: " + computerScore);
+            console.log("Your Score: " + playerScore);
+        }
+
+    // play until one player has 3 points //
+    while (playerScore < 3 && computerScore < 3) {
+    playRound()
+    }
+
+    // declare winner //
+    playerScore > computerScore ? console.log("You win!") : console.log("The computer wins.");
+
+}
+
+// ask to play again //
+function playAgain () {
+    let anotherGame = prompt("Type YES in ALL CAPS to play again!");
+    if (anotherGame  === "YES") {
+        game();
+    }
+}
+
+// play //
+
+game();
+playAgain();
+
+
+</script>
+
